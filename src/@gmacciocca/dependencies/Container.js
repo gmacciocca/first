@@ -8,7 +8,7 @@ export default class Container {
         this._dependencies[dependency.roleName] = dependency;
     }
 
-    forEachDependency(func, type) {
+    forEachDependency(type, func) {
         Object.keys(this._dependencies)
         .filter(roleName => type !== undefined ? this._dependencies[roleName].type === type : true)
         .forEach(roleName => func(this._dependencies[roleName]));
@@ -21,24 +21,5 @@ export default class Container {
             }
         });
         return this._roles;
-    }
-
-    callMethodOnDependencies(methodName, ...args) {
-        const promiseArray = Object.keys(this._dependencies)
-            .filter(roleName => this._hasFunction(this._dependencies[roleName].value, methodName))
-            .map(roleName => {
-                const { value } = this._dependencies[roleName];
-                const ret = this._callFunction(value, methodName, ...args);
-                return ret instanceof Promise ? ret : null;
-            });
-        return Promise.all(promiseArray);
-    }
-
-    _callFunction(obj, funcName, ...others) {
-        return obj[funcName](...others);
-    }
-
-    _hasFunction(obj, funcName) {
-        return obj && typeof obj[funcName] === "function";
     }
 }

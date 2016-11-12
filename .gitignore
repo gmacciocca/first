@@ -5,10 +5,4 @@
 /build
 /.sass-cache
 /npm-debug.log
-/node_modules/*
-!/node_modules/@gmacciocca
-/node_modules/@gmacciocca/*/node_modules
-/node_modules/@gmacciocca/*/lib
-/node_modules/@gmacciocca/storage
-/node_modules/@gmacciocca/localize
-/node_modules/@gmacciocca/events
+/node_modules
