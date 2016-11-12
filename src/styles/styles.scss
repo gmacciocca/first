@@ -1,0 +1,21 @@
+.appshell {
+    background-color: yellow;
+
+    &__toggleButtonWrapper {
+        text-align: center;
+    }
+    
+    &__toggleButton {
+        &:hover{
+            border: 3px;
+        }
+    }
+}
+
+.fifteen {
+    background-color: pink;
+}
+
+.tictactoe {
+    background-color: green;
+}

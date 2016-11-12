@@ -1,0 +1,12 @@
+{
+    "appShell": {
+        "title": "Playpen!" ,
+        "welcomeMessage": "Welcome to the Playpen App!"
+    },
+    "fifteen" : {
+        "title": "Fifteen!"
+    },
+    "tictactoe": {
+        "title": "Tic Tac Toe!"
+    }
+}
