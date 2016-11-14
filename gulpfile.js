@@ -35,6 +35,14 @@ gulp.task("copyResources", ["clean"], function() {
     });
 });
 
+gulp.task("copyPackage", function() {
+    console.log("process.argv", process.argv);
+    var args = process.argv.slice(2);
+    if (args[0] === "--env" && args[1] === "production");
+    copy(`./node_modules/@gmacciocca/${args[0]}/src/*`, `../${args[0]}/src/`, fsCallback);
+});
+
+
 //
 // function onError(e) {
 //     console.error(e.message);

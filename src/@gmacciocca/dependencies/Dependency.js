@@ -13,10 +13,6 @@ export default class Dependency {
         return this._roleName;
     }
 
-    get classType() {
-        return this._classType;
-    }
-
     get value() {
         return this._value;
     }

@@ -22,7 +22,7 @@ export default class HError {
     }
 
     toString() {
-        return `Error ${this._code}: ${this._message} ${this._details.toString()}`;
+        return `Error ${this.code}: ${this.message} ${this.details.toString()}`;
     }
 
     setCodes(codes) {

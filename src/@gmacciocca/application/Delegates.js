@@ -13,10 +13,10 @@ export default class Delegates {
     createDependenciesBuilder() {
         throw new AppError("APP.APP.MISSING_DELEGATE", { message: "DependenciesBuilder delegate is required." });
     }
-    createLocalize(/*roles*/) {
-        throw new AppError("APP.APP.MISSING_DELEGATE", { message: "Localization delegate is required." });
-    }
-    createStorage(/*roles*/) {
-        throw new AppError("APP.APP.MISSING_DELEGATE", { message: "Storage delegate is required." });
-    }
+    // createLocalize(/*roles*/) {
+    //     throw new AppError("APP.APP.MISSING_DELEGATE", { message: "Localization delegate is required." });
+    // }
+    // createStorage(/*roles*/) {
+    //     throw new AppError("APP.APP.MISSING_DELEGATE", { message: "Storage delegate is required." });
+    // }
 }

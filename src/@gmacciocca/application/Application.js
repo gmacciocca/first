@@ -3,7 +3,7 @@ import AppError from "./AppError";
 let _instance;
 
 export default class Application {
-    constructor(components, delegates, configuration) {
+    constructor(delegates, components, configuration) {
         if (_instance) {
             throw new AppError("APP.ALREADY_INSTANTIATED", { message: "Application constructor: App is already instantiated." });
         }
@@ -27,9 +27,8 @@ export default class Application {
     }
 
     bootstrap() {
-        return this._createDependenciesBuilder()
+        return this._createDelegates()
         .then(() => this._buildDependencies())
-        .then(() => this._createDelegates())
         .then(() => this._events.fireWait("application.ready"))
         .catch(err => {
             throw new AppError("APP.BOOTRSTRAP_ERROR", { message: `Application Bootstrap: error ${err.toString()}` });
@@ -84,9 +83,24 @@ export default class Application {
         return Application.instance().configuration();
     }
 
-    _createDependenciesBuilder() {
-        return new Promise(resolve => {
-            resolve(this._dependenciesBuilder = this._delegates.createDependenciesBuilder());
+    _createDelegates() {
+        return new Promise((resolve, reject) => {
+            try {
+                this._dependenciesBuilder = this._delegates.createDependenciesBuilder();
+                this._events = this._delegates.createEvents();
+                this._uncaughtErrors = this._delegates.createUncaughtErrors();
+                //this._localize = this._delegates.createLocalize();
+
+                this._dependenciesBuilder
+                    .add({ roleName: "events", value: this._events })
+                    .add({ roleName: "uncaughtErrors", value: this._uncaughtErrors });
+                    //.add({ roleName: "localize", value: this._localize });
+
+                resolve();
+            } catch (err) {
+                reject(err);
+                //reject(new AppError("APP.BOOTRSTRAP_ERROR", { message: `Application Bootstrap: error creating delegates: ${err.toString()}` }));
+            }
         });
     }
 
@@ -98,15 +112,6 @@ export default class Application {
         })
         .catch(err => {
             throw new AppError("APP.BOOTRSTRAP_ERROR", { message: `Application Bootstrap: error bootstrapping dependencies: ${err.toString()}` });
-        });
-    }
-
-    _createDelegates() {
-        return new Promise(resolve => {
-            this._events = this._delegates.createEvents(this._roles);
-            this._uncaughtErrors = this._delegates.createUncaughtErrors(this._roles);
-            this._localize = this._delegates.createLocalize(this._roles);
-            resolve();
         });
     }
 

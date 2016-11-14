@@ -23,8 +23,8 @@
     "sassify": "sass ./src/styles/styles.scss ./public/css/styles.css",
     "copyResources": "cp ./src/resources/*.json ./public/resources/",
     "test": "mocha test --recursive",
-    "xxxxtest": "mocha --opts test/mocha.all.opts test --recursive",
-    "xxxxtest": "mocha --opts test/mocha.all.opts --colors"
+    "xxxxtest": "mocha --opts test/mocha.all.opts --colors",
+    "copyPackage": "gulp copyPackage"
   },
   "author": "Gianluca Macciocca",
   "license": "MIT",

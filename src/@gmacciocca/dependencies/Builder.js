@@ -13,14 +13,18 @@ export default class Builder {
     build() {
         return new Promise((resolve, reject) => {
             try {
-                this._container.forEachDependency(DEPENDENCY_TYPES.CLASS, dependency => {
-                    const { classType, parameters } = dependency;
-                    dependency.value = new classType(this._container.roles, ...parameters);
-                });
+                this._createDepencencyClasses();
                 resolve(this._container.roles);
             } catch (err) {
-                reject(err);
+                reject(new Error("Builder: error creating dependencies: ". err.toString()));
             }
+        });
+    }
+
+    _createDepencencyClasses() {
+        this._container.forEach(DEPENDENCY_TYPES.CLASS, dependency => {
+            const { constr, parameters } = dependency;
+            dependency.value = new constr(this._container.roles, ...parameters);
         });
     }
 }
