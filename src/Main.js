@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { Title, SubTitle } from "./Titles";
 import { createApp, destroyApp } from "./ApplicationCreation";
-import { Application } from "./@gmacciocca/application";
+import { Application } from "sp-application";
 
 const Game = ({ id, path }) => (
     <li><Link to={path} >{Application.localize(`${id}/title`)}</Link></li>

@@ -1,10 +1,9 @@
-import { Application, Delegates, UncaughtErrors } from "./@gmacciocca/application";
-import { Builder, DependencyClass, DependencyValue } from "./@gmacciocca/dependencies";
+import { Application, Delegates, UncaughtErrors } from "sp-application";
+import { Builder, DependencyClass, DependencyValue } from "dependency-theory";
 import Events from "life-events";
 import Localize from "lingo-localize";
 import { Storage, storeFactory } from "basement-storage";
 import loadJsonResource from "./loadJsonResource";
-
 
 const configuration = {
     localize: {

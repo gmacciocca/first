@@ -1,6 +1,6 @@
 import React from "react";
 import { Title } from "../Titles";
-import { Application } from "../@gmacciocca/application";
+import { Application } from "sp-application";
 
 export default class Fifteen extends React.Component {
     render() {
