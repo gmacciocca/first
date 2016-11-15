@@ -37,7 +37,9 @@
     "basement-storage": "git+ssh://git@github.com/gmacciocca/basement-storage.git",
     "lingo-localize": "git+ssh://git@github.com/gmacciocca/lingo-localize.git",
     "life-events": "git+ssh://git@github.com/gmacciocca/life-events.git",
-    "honest-error": "git+ssh://git@github.com/gmacciocca/honest-error.git"
+    "honest-error": "git+ssh://git@github.com/gmacciocca/honest-error.git",
+    "dependency-theory": "git+ssh://git@github.com/gmacciocca/dependency-theory.git",
+    "sp-application": "git+ssh://git@github.com/gmacciocca/sp-application.git"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
