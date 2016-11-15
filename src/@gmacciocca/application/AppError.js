@@ -1,4 +1,4 @@
-import HError from "../../@gmacciocca/honest-error";
+import HError from "honest-error";
 
 const CODES = [
     "APP.ALREADY_INSTANTIATED",

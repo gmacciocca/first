@@ -1,3 +1,4 @@
+import DepError from "./DepError";
 import Container from "./Container";
 import DEPENDENCY_TYPES from "./DependencyTypes";
 
@@ -14,9 +15,12 @@ export default class Builder {
         return new Promise((resolve, reject) => {
             try {
                 this._createDepencencyClasses();
-                resolve(this._container.roles);
+                resolve(this._container.dependencies);
             } catch (err) {
-                reject(new Error("Builder: error creating dependencies: ". err.toString()));
+                reject(new DepError("DEP.BUILD_ERROR", {
+                    message: "Builder: error creating dependencies.",
+                    originalError: err
+                }));
             }
         });
     }
@@ -24,7 +28,7 @@ export default class Builder {
     _createDepencencyClasses() {
         this._container.forEach(DEPENDENCY_TYPES.CLASS, dependency => {
             const { constr, parameters } = dependency;
-            dependency.value = new constr(this._container.roles, ...parameters);
+            dependency.value = new constr(this._container.dependencies, ...parameters);
         });
     }
 }
